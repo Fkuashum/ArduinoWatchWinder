@@ -1,51 +1,20 @@
-This Arduino controlled watch winder was developed because commercially available
-winders did not offer the control I wanted at a price point I was 
-comfortable with. I am not a programmer, so please forgive any non-conventional
-decisions and/or formatting.
+- The source code has been taken (forked) from this project: https://github.com/WatchWinder/ArduinoWatchWinder
+It has been modified to fit on an Uno (instead of Mega2560), accommodate contemporary IDE 1.8.6 and up-to-date 2018 libraries.
+Had to move to a different menu library in particular.
 
-This project makes use of the MENWIZ library for creating the LCD menu structure.
+- Most comments and description are on tab 1 of the core ino file
 
-***NOTE: The newest version of this project uses an altered version of the MENWIZ library,
-which I have titled MENWIZ_LiquidTWI2. A zip file of this altered library is provided.
+- save_presets_eeprom.ino needs to be run once only before uploading the core programme on the Uno board.
+It writes presets for TPD and DIR into EEPROM for two watches; see comments in the ino file.
 
-There are four navigational buttons (down, up, confirm, escape) which are used to 
-navigate the menu and change settings.
+- Pin 10 is used for LED built into the Activate slot button, it turns on when slot is active. This is optional and not shown on schematics.
 
-This project provides ability for the following:
+- PCF2584-based backpack must be soldered to a typical LCD 20x4 (not 16x2), the latter not shown on schematics.
 
-  Adjustable Turns Per Day (TPD)
-    -increments of 5 (an arbitrary decision)
-  
-  Adjustable Direction
-    -clockwise
-    -counterclockwise
-    -both
-  
-  Adjustable Turn Frequency
-    -turn the watch every n number of minutes. Do you want that hour's turns to
-     happen all at once at the top of the hour, or spread out to occur every 5 minutes
-     throughout the hour? etc...
-    -winder automatically calculates number of turns per cycle, depending on
-     cycle frequency and TPD (precise to 1/6400th of a turn)
-  
-  Full Wind
-    -run continuously, to wind a watch from a dead stop. 800 turns (arbitrary
-     decision)
-  
-  Turn Counter
-    -displays number of turns since midnight
-      -does not include turns from "full wind" action
-  
-  GPS Receiver
-    -get GPS time for on-screen clock
-      -also used for resetting turn counter at midnight
+- Capacitor on the motor power supply is 16V 47 microfarads
 
+Apologies for any unconventional programming decisions or schematics.
+Please read the "readme" for the source project before asking any questions.
+If needed, please write to alexarefiev@gmail.com
 
--Arduino IDE 1.0.5
--Hardware
-  -Arduino Mega 2560 R3
-  -NEMA 14 0.9deg (400 step/rev) 11Ncm stepper motor
-  -SilentStepStick stepper motor driver
-  -Adafruit Ultimate GPS Breakout [ID:746]
-  -Adafruit RGB backlight negative LCD 20x4 + extras (RGB on black) [ID:498]
-  -Adafruit i2c / SPI character LCD backpack[ID:292]
+Good luck!
